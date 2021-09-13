@@ -1,6 +1,9 @@
 // Create variables for the game state
 let player1Score = 0
 let player2Score = 0
+let extra1 = 0
+let extra2 = 0
+
 let player1Turn = true //can create an object to store both player turns
 
 const messageEl = document.getElementById("message")
@@ -50,7 +53,7 @@ rollBtnEl.addEventListener("click", function () {
         dice2El.classList.remove("active")
         player1ScoreEl.textContent = player1Score + extra1
     }
-    } else if (ranNum === 6) {
+    else if (ranNum === 6) {
         messageEl.textContent = `Player 2 get a second Turn 😁`
         extra2 += ranNum
         dice2El.textContent = ranNum
