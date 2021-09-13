@@ -3,7 +3,9 @@ let player1Score = 0
 let player2Score = 0
 let extra1 = 0
 let extra2 = 0
-
+let count1 = 0
+let count2 = 0
+let gameWon = 0
 let player1Turn = true //can create an object to store both player turns
 
 const messageEl = document.getElementById("message")
@@ -15,6 +17,9 @@ const dice2El = document.getElementById("player2Dice")
 
 const rollBtnEl = document.getElementById("rollBtn")
 const resetBtnEl = document.getElementById("resetBtn")
+
+const count1El = document.getElementById("player1-win-count")
+const count2El = document.getElementById('player2-win-count')
 
 function changeDisplayButton() {
     rollBtnEl.style.display = "none"
@@ -75,6 +80,7 @@ rollBtnEl.addEventListener("click", function () {
 
 resetBtnEl.addEventListener("click", function () {
     reset()
+    counter()
 })
 
 function reset() {
@@ -90,4 +96,14 @@ function reset() {
     rollBtnEl.style.display = "block"
     dice2El.classList.remove("active")
     dice1El.classList.add("active")
+}
+
+function counter (){
+    if( gameWon){
+        count1 += 1
+        count1El.textContent = count1
+    } else {
+        count2El += 1
+        count2El.textContent = count2
+    }
 }
