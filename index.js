@@ -13,7 +13,7 @@ const dice2El = document.getElementById("player2Dice")
 const rollBtnEl = document.getElementById("rollBtn")
 const resetBtnEl = document.getElementById("resetBtn")
 
-function changeDisplayButton(){
+function changeDisplayButton() {
     rollBtnEl.style.display = "none"
     resetBtnEl.style.display = "block"
 }
@@ -42,22 +42,39 @@ rollBtnEl.addEventListener("click", function () {
         //console.log(`Player 2 rolled ${ranNum}`)
     }
 
+    if (player1Turn && ranNum === 6) {
+        messageEl.textContent = `Player 1 get a second Turn 😁`
+        extra1 += ranNum
+        dice1El.textContent = ranNum
+        dice1El.classList.add("active")
+        dice2El.classList.remove("active")
+        player1ScoreEl.textContent = player1Score + extra1
+    }
+    } else if (ranNum === 6) {
+        messageEl.textContent = `Player 2 get a second Turn 😁`
+        extra2 += ranNum
+        dice2El.textContent = ranNum
+        dice2El.classList.add("active")
+        dice1El.classList.remove("active")
+        player2ScoreEl.textContent = player2Score + extra2
+    }
+
     player1Turn = !player1Turn                             // ! invert the value
 
-    if (player1Score >= 21 ){
+    if (player1Score >= 21) {
         changeDisplayButton()
         messageEl.textContent = `Player 1 has won! 😎`
-    } else if (player2Score >= 21){
+    } else if (player2Score >= 21) {
         changeDisplayButton()
         messageEl.textContent = `Player 2 has won! 😎`
     }
 })
 
-resetBtnEl.addEventListener("click", function(){
+resetBtnEl.addEventListener("click", function () {
     reset()
 })
 
-function reset(){
+function reset() {
     messageEl.textContent = `Player 1 Turn`
     player1Score = 0
     player2Score = 0
